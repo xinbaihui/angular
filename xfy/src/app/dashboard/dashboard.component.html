@@ -1,0 +1,31 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <label>
+    xf
+    <input type="text" formControlName="xf"/>
+  </label>
+
+  <label>
+    xbh
+    <input type="text" formControlName="xbh"/>
+  </label>
+
+  <label>
+    xy
+    <input type="text" formControlName="xy"/>
+  </label>
+
+  <div formGroupName="familyInfo">
+    <label>
+      Most Cute:
+      <input type="text" formControlName="mc"/>
+    </label>
+
+    <label>
+      Most Beautiful:
+      <input type="text" formControlName="mb"/>
+    </label>
+  </div>
+
+  <button (click)="updateValue()">update</button>
+  <button type="submit" style="display: none;"></button>
+</form>
