@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { character, chatContent } from '../model'
 import { participants, chatContents } from '../data'
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-dashboard',
@@ -13,20 +13,27 @@ export class DashboardComponent implements OnInit {
   chatContents: chatContent[]
   formGroup: FormGroup
 
-  constructor() { }
+  get others () {
+    return this.formGroup.get('others') as FormArray
+  }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.participants = participants
     this.chatContents = chatContents
 
-    this.formGroup = new FormGroup({
-      xf: new FormControl('',),
-      xbh: new FormControl('',),
-      xy: new FormControl('',),
-      familyInfo: new FormGroup({
-        mc: new FormControl(''),
-        mb: new FormControl('')
-      })
+    this.formGroup= this.fb.group({
+      xf: ['', Validators.required],
+      xbh: [''],
+      xy: [''],
+      familyInfo: this.fb.group({
+        mc: ['', Validators.required],
+        mb: ['']
+      }),
+      others: this.fb.array([
+        this.fb.control('')
+      ])
     })
   }
 
@@ -43,4 +50,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  addOthers() {
+    this.others.push(this.fb.control(''))
+  }
 }

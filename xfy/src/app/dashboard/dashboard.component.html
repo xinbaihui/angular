@@ -1,4 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <h2>Part1</h2>
   <label>
     xf
     <input type="text" formControlName="xf"/>
@@ -14,6 +15,7 @@
     <input type="text" formControlName="xy"/>
   </label>
 
+  <h2>Part2</h2>
   <div formGroupName="familyInfo">
     <label>
       Most Cute:
@@ -26,6 +28,21 @@
     </label>
   </div>
 
-  <button (click)="updateValue()">update</button>
-  <button type="submit" style="display: none;"></button>
+  <h2>Part3</h2>
+  <div formArrayName="others">
+    <div *ngFor="let other of others.controls; let i=index;">
+      <label>
+        Other-{{i}}:
+        <input type="text" [formControlName]="i" />
+      </label>
+    </div>
+    <button (click)="addOthers()">Add</button>
+  </div>
+
+  <div class="footer">
+    <button (click)="updateValue()">update</button>
+    <button type="submit" [disabled]="!formGroup.valid">Submit</button>
+  </div>
+
+  <p>Form Status: {{ formGroup.status }}</p>
 </form>
