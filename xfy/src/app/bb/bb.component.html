@@ -1,0 +1,21 @@
+<clr-datagrid>
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Time</clr-dg-column>
+  <clr-dg-column>Address</clr-dg-column>
+  <clr-dg-column>Quantity</clr-dg-column>
+  <clr-dg-column>Difficulty</clr-dg-column>
+  <clr-dg-column>Interval</clr-dg-column>
+
+  <clr-dg-row *ngFor="let item of bbItems">
+    <clr-dg-cell>{{item.name}}</clr-dg-cell>
+    <clr-dg-cell>{{item.time}}</clr-dg-cell>
+    <clr-dg-cell>{{item.address}}</clr-dg-cell>
+    <clr-dg-cell>{{item.quantity}}</clr-dg-cell>
+    <clr-dg-cell>{{item.difficulty}}</clr-dg-cell>
+    <clr-dg-cell>{{item.interval}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
