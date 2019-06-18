@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BB } from '../model';
+import { BbService } from '../bb.service'
 
 @Component({
   selector: 'app-bb',
@@ -7,28 +8,16 @@ import { BB } from '../model';
   styleUrls: ['./bb.component.scss']
 })
 export class BBComponent implements OnInit {
-  bbItems: BB[];
+  BBData: BB[];
 
-  constructor() { }
+  constructor(private bbService: BbService) { }
 
   ngOnInit() {
-    this.bbItems = [{
-      id: 0,
-      name: 'DD',
-      time: '2019-06-17 09:00:00',
-      address: 'home',
-      quantity: 'Middle',
-      difficulty: 'Middle',
-      interval: 0
-    }, {
-      id: 1,
-      name: 'DD',
-      time: '2019-06-17 19:00:00',
-      address: 'home',
-      quantity: 'Middle',
-      difficulty: 'Middle',
-      interval: 0
-    }]
+    this.getBBdata()
+  }
+
+  getBBdata(): void {
+    this.BBData = this.bbService.getBBData()
   }
 
 }
