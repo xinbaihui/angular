@@ -17,7 +17,7 @@ export class BBComponent implements OnInit {
   }
 
   getBBdata(): void {
-    this.BBData = this.bbService.getBBData()
+    this.bbService.getBBData().subscribe(data => this.BBData = data)
   }
 
 }
