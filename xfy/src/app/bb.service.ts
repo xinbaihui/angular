@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BB } from './model'
-import { BBData } from './mock-bb'
 import { Observable, of } from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { httpClientInMemBackendServiceFactory } from 'angular-in-memory-web-api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BbService {
+  private bbUrl = 'api/bbs'
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   getBBData(): Observable<BB[]> {
-    return of(BBData)
+    return this.http.get<BB[]>(this.bbUrl)
   }
 }
