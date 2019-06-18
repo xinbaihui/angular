@@ -1,18 +1,10 @@
-export enum GENDER {
-  MALE = 'male',
-  FEMALE = 'female'
-}
 
-export class character {
+export class BB {
   id: number;
   name: string;
-  gender: GENDER;
-  character: string
-}
-
-export class chatContent {
-  content: string;
-  sourceName: string;
-  sourceId: number;
-  time: string | number
+  time: string;
+  address: string;
+  quantity: string;
+  difficulty: string;
+  interval: number;
 }

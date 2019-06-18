@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BB } from '../model';
 
 @Component({
   selector: 'app-bb',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bb.component.scss']
 })
 export class BBComponent implements OnInit {
-  bbItems: any[];
+  bbItems: BB[];
 
   constructor() { }
 
@@ -18,7 +19,15 @@ export class BBComponent implements OnInit {
       address: 'home',
       quantity: 'Middle',
       difficulty: 'Middle',
-      interval: ''
+      interval: 0
+    }, {
+      id: 1,
+      name: 'DD',
+      time: '2019-06-17 19:00:00',
+      address: 'home',
+      quantity: 'Middle',
+      difficulty: 'Middle',
+      interval: 0
     }]
   }
 
