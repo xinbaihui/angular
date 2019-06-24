@@ -20,4 +20,17 @@ export class BBComponent implements OnInit {
     this.bbService.getBBData().subscribe(data => this.BBData = data)
   }
 
+  add(): void {
+    const data = {
+      name: 'XX',
+      time: '2019-06-24 15:30:00',
+      address: 'Comp',
+      quantity: 'Middle',
+      difficulty: 'Middle',
+      interval: 0
+    }
+    this.bbService.addBB(data as BB)  // add "as BB“ or will report an error: Property 'id' is missing...
+      .subscribe((bb: BB) => this.BBData.push(bb))
+  }
+
 }

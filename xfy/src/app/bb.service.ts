@@ -10,10 +10,17 @@ import { catchError, map, tap } from 'rxjs/operators'
 })
 export class BbService {
   private bbUrl = 'api/bbs'
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   constructor(private http: HttpClient) {}
 
   getBBData(): Observable<BB[]> {
     return this.http.get<BB[]>(this.bbUrl)
+  }
+
+  addBB(data: BB): Observable<BB> {
+    return this.http.post<BB>(this.bbUrl, data, this.httpOptions)
   }
 }
