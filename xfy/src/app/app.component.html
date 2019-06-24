@@ -1,7 +1,21 @@
-<app-home></app-home>
-<nav>
-  <a routerLink="/BB">BB</a>
-  <a routerLink="/others">Others</a>
-</nav>
+<div class="main-container">
+    <header class="header">
+      <a class="nav-link" clrverticalnavlink routerLink="/home" href="javascript://">
+        <clr-icon class="home-icon" shape="home"></clr-icon>
+      </a>
+    </header>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
 
-<router-outlet></router-outlet>
+        <clr-vertical-nav>
+            <a class="nav-link" clrverticalnavlink routerLink="/bb" href="javascript://">
+              <span class="nav-text"> BB </span>
+            </a>
+            <a class="nav-link" clrverticalnavlink routerLink="/others" href="javascript://">
+              <span class="nav-text"> Others </span>
+            </a>
+        </clr-vertical-nav>
+    </div>
+</div>

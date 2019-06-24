@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BBComponent } from './bb/bb.component';
 import { OthersComponent } from './others/others.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{
-  path: 'BB',
+  path: 'home',
+  component: HomeComponent
+}, {
+  path: 'bb',
   component: BBComponent
 }, {
   path: 'others',

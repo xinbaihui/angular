@@ -3,6 +3,7 @@ import { BB } from './model'
 import { Observable, of } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { httpClientInMemBackendServiceFactory } from 'angular-in-memory-web-api';
+import { catchError, map, tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
