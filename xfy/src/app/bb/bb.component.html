@@ -1,20 +1,16 @@
 <div>
-  <button class="btn" (click)="add()">Add</button>
+  <button class="btn" (click)="modalOpened = true">Add</button>
   <clr-datagrid>
     <clr-dg-column>Name</clr-dg-column>
     <clr-dg-column>Time</clr-dg-column>
     <clr-dg-column>Address</clr-dg-column>
     <clr-dg-column>Quantity</clr-dg-column>
-    <clr-dg-column>Difficulty</clr-dg-column>
-    <clr-dg-column>Interval</clr-dg-column>
   
     <clr-dg-row *ngFor="let item of BBData">
       <clr-dg-cell>{{item.name}}</clr-dg-cell>
       <clr-dg-cell>{{item.time}}</clr-dg-cell>
       <clr-dg-cell>{{item.address}}</clr-dg-cell>
       <clr-dg-cell>{{item.quantity}}</clr-dg-cell>
-      <clr-dg-cell>{{item.difficulty}}</clr-dg-cell>
-      <clr-dg-cell>{{item.interval}}</clr-dg-cell>
     </clr-dg-row>
   
     <clr-dg-footer>
@@ -22,4 +18,44 @@
       <clr-dg-pagination #pagination [clrDgPageSize]="1">{{pagination.totalItems}}</clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>
+
+  <clr-modal [(clrModalOpen)]="modalOpened">
+    <h3 class="modal-title">Add</h3>
+    <div class="modal-body">
+      <form clrForm [formGroup]="form">
+        <clr-input-container>
+          <label>Name</label>
+          <input clrInput formControlName="name" name="name" required/>
+          <clr-control-error>Name is required!</clr-control-error>
+        </clr-input-container>
+        <clr-date-container>
+          <label>Time</label>
+          <input type="date" clrDate formControlName="time" name="time" required readonly/>
+        </clr-date-container>
+        <clr-select-container>
+          <label>Address</label>
+          <select clrSelect name="address" formControlName="address" >
+            <option value="home">Home</option>
+            <option value="comp">Comp</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label>Quantity</label>
+          <select clrSelect name="quantity" formControlName="quantity" >
+            <option value="little">Little</option>
+            <option value="middle">Middle</option>
+            <option value="much">Much</option>
+          </select>
+        </clr-select-container>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="modalOpened = false">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="modalConfirm()">
+        Confirm
+      </button>
+    </div>
+  </clr-modal>
 </div>

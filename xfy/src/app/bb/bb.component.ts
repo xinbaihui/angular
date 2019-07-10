@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BB } from '../model';
 import { BbService } from '../bb.service'
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-bb',
@@ -9,28 +10,33 @@ import { BbService } from '../bb.service'
 })
 export class BBComponent implements OnInit {
   BBData: BB[];
+  modalOpened: boolean;
+  form: FormGroup;
 
-  constructor(private bbService: BbService) { }
+  constructor(private fb: FormBuilder, private bbService: BbService) { }
 
   ngOnInit() {
     this.getBBdata()
+    this.modalOpened = false
+    this.form = this.fb.group({
+      name: ['XX', Validators.required],
+      time: ['', Validators.required],
+      address: ['home'],
+      quantity: ['middle']
+    })
   }
 
   getBBdata(): void {
     this.bbService.getBBData().subscribe(data => this.BBData = data)
   }
 
-  add(): void {
-    const data = {
-      name: 'XX',
-      time: '2019-06-24 15:30:00',
-      address: 'Comp',
-      quantity: 'Middle',
-      difficulty: 'Middle',
-      interval: 0
-    }
-    this.bbService.addBB(data as BB)  // add "as BB“ or will report an error: Property 'id' is missing...
-      .subscribe((bb: BB) => this.BBData.push(bb))
+  modalConfirm(): void {
+    console.log(this.form.value)
+    this.bbService.addBB(this.form.value as BB)  // add "as BB“ or will report an error: Property 'id' is missing...
+      .subscribe((bb: BB) => {
+        this.BBData.push(bb)
+        this.modalOpened = false
+      })
   }
 
 }
