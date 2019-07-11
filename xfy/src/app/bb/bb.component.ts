@@ -12,6 +12,7 @@ export class BBComponent implements OnInit {
   BBData: BB[];
   modalOpened: boolean;
   form: FormGroup;
+  error: any;
 
   constructor(private fb: FormBuilder, private bbService: BbService) { }
 
@@ -27,16 +28,21 @@ export class BBComponent implements OnInit {
   }
 
   getBBdata(): void {
-    this.bbService.getBBData().subscribe(data => this.BBData = data)
+    this.bbService.getBBData().subscribe(
+      data => this.BBData = data['bbs']),
+      error => this.error = error
   }
 
   modalConfirm(): void {
     console.log(this.form.value)
     this.bbService.addBB(this.form.value as BB)  // add "as BB“ or will report an error: Property 'id' is missing...
-      .subscribe((bb: BB) => {
-        this.BBData.push(bb)
-        this.modalOpened = false
-      })
+      .subscribe(
+        (bb: BB) => {
+          this.BBData.push(bb)
+          this.modalOpened = false
+        },
+        error => this.error = error
+      )
   }
 
 }

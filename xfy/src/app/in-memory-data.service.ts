@@ -11,13 +11,13 @@ export class InMemoryDataService {
       name: 'DD',
       time: '2019-06-17 09:00:00',
       address: 'home',
-      quantity: 'Middle'
+      quantity: 'middle'
     }, {
       id: 1,
       name: 'DD',
       time: '2019-06-17 19:00:00',
       address: 'home',
-      quantity: 'Middle'
+      quantity: 'middle'
     }]
     return { bbs }
   }
