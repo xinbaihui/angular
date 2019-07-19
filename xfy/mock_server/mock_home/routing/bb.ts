@@ -1,5 +1,9 @@
 export default [{
   path: '/bb',
-  method: 'GET',
+  methods: ['GET'],
+  controller: 'bb'
+}, {
+  path: '/bb',
+  methods: ['POST'],
   controller: 'bb'
 }]

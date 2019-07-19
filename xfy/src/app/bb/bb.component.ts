@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BB } from '../model';
-import { BbService } from '../bb.service'
+import { BbService } from './bb.service'
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -29,8 +29,9 @@ export class BBComponent implements OnInit {
 
   getBBdata(): void {
     this.bbService.getBBData().subscribe(
-      data => this.BBData = data['bbs']),
+      data => this.BBData = data,
       error => this.error = error
+    )
   }
 
   modalConfirm(): void {
